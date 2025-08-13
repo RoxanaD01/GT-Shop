@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GT Shop</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+    <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+<header>
+  <nav class="main-nav">
+    <div class="nav-left">
+      <div class="logo">
+        <img src="images/gtlogo.png" alt="GT Logo">
+      </div>
+      <ul class="nav-links">
+        <li><a href="#">Acasă</a></li>
+        <li><a href="#">The Jungle</a></li>
+        <li><a href="#">The Hut</a></li>
+        <li><a href="#">Bonusuri</a></li>
+        <li><a href="#">Rush-uri</a></li>
+        <li><a href="#">Pauză!</a></li>
+      </ul>
+    </div>
+    <div class="nav-right">
+      <span class="ap-indicator">
+        AP: 4800 <i class="fas fa-bolt ap-icon"></i> 
+      </span>
+      <ul class="icon-bar">
+        <li><button class="circle-icon"><i class="fas fa-shopping-cart"></i></button></li>
+        <li><button class="circle-icon"><i class="fas fa-comment-dots"></i></button></li>
+        <li><button class="circle-icon"><i class="fas fa-search"></i></button></li>
+        <li><button class="circle-icon"><i class="fas fa-bell"></i></button></li>
+      </ul>
+      <div class="user-avatar" id="user-avatar-btn">🙍‍♂️</div>
+      <div id="profile-modal" class="profile-modal hidden">
+        <div class="profile-content">
+          <span class="close-profile">&times;</span>
+          <div class="profile-header">
+            <h4 id="user-profile"></h4>
+          </div>
+          <ul class="profile-menu">
+            <li class="fake">Profilul meu</li>
+            <li><button id="history-btn">Istoric Comenzi</button></li>
+            <li class="fake">Authentication</li>
+            <li class="fake">Badge-urile mele</li>
+            <li class="fake">Punctele</li>
+            <li class="fake">Notification settings</li>
+            <li class="fake">Log out</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+<section class="bazar-section">
+  <div class="bazar-content">
+    <h3 class="bazar-subtitle">The River</h2>
+    <h1 class="bazar-title">Lorem Ipsum AP Related</h3>
+    <p class="bazar-description">
+      Lorem ipsum dolor sit amet consectetur adipiscing elit. Quisque faucibus ex sapien vitae pellentesque sem placerat. In id cursus mi pretium tellus duis convallis.
+    </p>
+  </div>
+</section>
+
+<main>
+  <section class="search-section">
+    <h2>Lorem Ipsum Shop Related</h2>
+    <div class="search-bar">
+      <input type="text" id="search-input" class="search-input" placeholder="Cautare nume premiu">
+      <button class="search-btn">
+        <i class="fas fa-search"></i>
+      </button>
+    </div>
+    <div class="action-buttons">
+      <button class="filter-btn">
+        <i class="fas fa-filter"></i>
+        Filtrare
+      </button>
+      <div class="filter-dropdown hidden" id="filterDropdown">
+        <div class="filter-header">
+          <i class="fas fa-filter"></i>
+          <span>Filtrare</span>
+        </div>
+        <div class="filter-section">
+          <h4>Categorie:</h4>
+          <div class="filter-grid">
+            <div class="filter-option">
+              <input type="checkbox" id="cat-vouchers" name="category" value="voucher">
+              <label for="cat-vouchers">Vouchere</label>
+            </div>
+             <div class="filter-option">
+              <input type="checkbox" id="cat-decorations" name="category" value="decoration">
+              <label for="cat-decorations">Decorațiuni</label>
+            </div>
+            <div class="filter-option">
+              <input type="checkbox" id="cat-abonamente" name="category" value="abonamente">
+              <label for="cat-abonamente">Abonamente</label>
+            </div>
+            <div class="filter-option">
+              <input type="checkbox" id="cat-gentech" name="category" value="gentech">
+              <label for="cat-gentech">GenTech</label>
+            </div>
+            <div class="filter-option">
+              <input type="checkbox" id="cat-education" name="category" value="education">
+              <label for="cat-education">Carieră</label>
+            </div>
+            <div class="filter-option">
+              <input type="checkbox" id="cat-comori" name="category" value="comori">
+              <label for="cat-comori">Comori</label>
+            </div>
+          </div>
+        </div>
+
+        <div class="filter-section">
+          <h4>Preț:</h4>
+          <div class="price-range">
+            <div class="price-display">
+              <input type="number" id="min-price" class="price-input" value="15" min="0" step="5">
+              <span>—</span>
+              <input type="number" id="max-price" class="price-input" value="6000" min="0" step="5">
+            </div>
+            <input type="range" id="price-slider" class="range-slider" min="15" max="6000" value="3000" step="5">
+          </div>
+        </div>
+        <div class="filter-actions">
+          <button class="apply-btn">Aplică filtrele</button>
+        </div>
+      </div>
+      <button class="sort-btn" id="sort-toggle">
+        <i class="fas fa-sort"></i>
+        Sortare
+      </button>
+      <div class="sort-dropdown hidden" id="sortDropdown">
+        <div class="sort-header">
+          <i class="fas fa-filter"></i>
+          <span>Sortare</span>
+        </div>
+        <ul>
+          <li class="active">Categorii <span class="checkmark">✓</span></li>
+          <li>Preț Crescător</li>
+          <li>Preț Descrescător</li>
+          <li>Ordine A-Z</li>
+          <li>Ordine Z-A</li>
+          <li>Cele mai noi</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section id="rewards-container">
+    <h2>Available Rewards</h2>
+    <div id="rewards-grid">
+      <!-- Dinamicaly generated cards in rewards.js -->
+    </div>
+  </section>
+
+  <!-- Cart Modal -->
+  <div id="cart-modal" class="cart-modal hidden" role="dialog" aria-labelledby="cart-modal-title">
+    <div class="cart-modal-content">
+      <div class="cart-modal-header">
+        <h3 id="cart-modal-title">Coșul tău</h3>
+        <button class="close-cart" aria-label="Închide coșul">&times;</button>
+      </div>
+      <div id="cart-modal-body">
+        <ul id="cart-items-list" class="cart-items-list">
+          <!-- Dynamic content -->
+        </ul>
+        <div id="cart-empty" class="cart-empty hidden">
+          <div class="cart-empty-icon">🛒</div>
+          <h4>Coșul tău este gol</h4>
+          <p>Adaugă produse din magazin pentru a le vedea aici.</p>
+        </div>
+        <div id="cart-summary" class="cart-summary">
+          <div class="cart-total">
+            <span>Total:</span>
+            <span class="cart-total-value">
+              <span id="cart-total-points">0</span>
+              <i class="fas fa-bolt"></i>
+            </span>
+          </div>
+          <button id="cart-checkout-btn" class="cart-checkout-btn">
+            Finalizează comanda
+          </button>
+        </div>
+      </div>
+      <div id="cart-checkout-msg" class="checkout-message"></div>
+    </div>
+  </div>
+
+  <!-- History Modal -->
+  <div id="history-modal" class="modal hidden" role="dialog" aria-labelledby="history-modal">
+    <div class="modal-content">
+      <span id="close-history" class="close">&times;</span>
+      <h3 class="history-header">Istoric Comenzi</h3>
+      <div id="history-list"></div>
+    </div>
+  </div>
+
+  <!-- Send AP Modal -->
+  <div id="send-ap-modal" class="modal hidden">
+    <div class="send-ap-content">
+      <span id="close-send-ap" class="close-send-ap">&times;</span>
+      <h4>Ai puncte în plus? Trimite către cineva!</h4>
+      <label for="recipient">Email-ul persoanei</label>
+      <input type="text" id="recipient" placeholder="Email/discord-ul persoanei" />
+      <label for="ap-amount">Numărul de AP trimis:</label>
+      <input type="text" id="ap-amount" placeholder="Ex. 500, 100, etc." />
+      <button id="send-ap-btn">Trimite</button>
+    </div>
+  </div>
+
+  <!-- Rewards Modal -->
+  <div id="reward-modal" class="modal hidden" role="dialog" aria-labelledby="rewards-modal">
+    <div class="modal-content">
+      <span id="close-reward" class="close" aria-label="Close Modal">&times;</span>
+      <img id="modal-image" alt=""/>
+      <div class="price">
+        <span id="modal-price">0</span>
+        <i class="fas fa-bolt"></i>
+      </div>
+      <div class="modal-body">
+        <h3 id="modal-name"></h3>
+        <p id="modal-fullDescription"></p>
+      </div>
+      <div class="modal-footer">
+        <button id="add-to-cart-btn">Adaugă în coș</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Address Confirmation Modal -->
+  <div id="address-modal" class="modal hidden" role="dialog" aria-labelledby="address-modal-title">
+    <div class="modal-content">
+      <span id="close-address" class="close">&times;</span>
+      <h3 id="address-modal-title">Confirmă adresa pentru livrare fizică</h3>
+      <label for="county">Județ:</label>
+      <input type="text" id="county" placeholder="Ex. Cluj">
+      <label for="city">Oraș:</label>
+      <input type="text" id="city" placeholder="Ex. Cluj-Napoca">
+      <label for="full-address">Adresă completă:</label>
+      <input type="text" id="full-address" placeholder="Stradă, număr, etaj, apartament">
+      <label for="phone">Număr de telefon:</label>
+      <input type="text" id="phone" placeholder="07xx xxx xxx">
+      <p class="address-modal-message"></p>
+      <button id="confirm-address-btn">Confirmă adresa</button>
+    </div>
+  </div>
+</main>
+
+<footer class="footer">
+  <div class="line">
+    <hr>
+  </div>
+  <div class="footer-logo">
+    <img src="images/gtlogo-black.png"alt="Generatia Tech Logo" />
+  </div>
+  <nav class="footer-links">
+    <a href="#">Track-urile tale</a>
+    <a href="#">Facebook</a>
+    <a href="#">Instagram</a>
+    <a href="#">Discord</a>
+    <a href="#">Blog</a>
+    <a href="#">Politica de confidențialitate</a>
+    <a href="#">FAQ</a>
+    <a href="#">Support</a>
+  </nav>
+  <div class="footer-copy">
+    Copyright © 2023 Generatia Tech
+  </div>
+</footer>
+
+<script type="module" src="main.js"></script>
+</body>
+</html>
