@@ -1,6 +1,6 @@
 import { getUserProfile, sendPointsAPI } from "./api.js";
 import { CONFIG } from "./config.js";
-import { showSuccess, showError } from "./logger.js";
+import { showSuccess, showError, logDebug } from "./logger.js";
 
 let currentUser = null;
 
@@ -8,7 +8,7 @@ export const userInfo = async () => {
     try {
         currentUser = await getUserProfile();
         if (CONFIG.DEBUG_MODE) {
-            console.log('👤 User loaded:', currentUser);
+            logDebug(' User loaded:', currentUser);
         }
         return currentUser;
     } catch (error) {

@@ -122,7 +122,6 @@ export const sendPointsAPI = (recipient, amount) => {
         body: JSON.stringify({ recipient, amount })
     };
 
-    // Mock simplu: scade din mockStorage.user.activityPoints
     const mockSendPoints = async () => {
         await mockStorage.networkDelay();
         if (mockStorage.user.activityPoints < amount) {

@@ -2,13 +2,13 @@ import { getUserHistory } from "./api.js";
 import { CONFIG } from "./config.js";
 import { logDebug, showError } from "./logger.js";
 
-// === State Management ===
+// State Management
 class HistoryState {
     constructor() {
         this.data = [];
         this.isLoading = false;
         this.lastUpdated = null;
-        this.cacheExpiry = 5 * 60 * 1000; // 5 minutes
+        this.cacheExpiry = 5 * 60 * 1000; 
     }
 
     get isDataStale() {
@@ -29,7 +29,7 @@ class HistoryState {
 
 const state = new HistoryState();
 
-// === DOM Elements Cache ===
+// DOM Elements 
 const elements = {
     modal: null,
     list: null,
@@ -37,7 +37,7 @@ const elements = {
     triggerBtn: null
 };
 
-// === Initialization ===
+// Initialization
 export const initHistory = () => {
     cacheElements();
     setupEventListeners();
@@ -119,7 +119,7 @@ const renderHistory = () => {
     logDebug(`📋 Rendered ${sortedOrders.length} order groups`);
 };
 
-// === Rendering Functions ===
+// Render Functions
 const renderOrderGroup = (orderId, items) => {
     const firstItem = items[0];
     const totalPoints = items.reduce((sum, item) => sum + item.pointsSpent, 0);
@@ -208,7 +208,7 @@ const showErrorState = () => {
     }
 };
 
-// === Modal Management ===
+// Modal
 const showModal = () => {
     if (!elements.modal) return;
 
@@ -242,15 +242,13 @@ const hideModal = () => {
     logDebug('📋 History modal closed');
 };
 
-// === Event Listeners ===
+// Event Listeners 
 const setupEventListeners = () => {
-    // Trigger button
     elements.triggerBtn?.addEventListener('click', (e) => {
         e.preventDefault();
         openHistory();
     });
 
-    // Close button
     elements.closeBtn?.addEventListener('click', (e) => {
         e.preventDefault();
         hideModal();
@@ -263,7 +261,6 @@ const setupEventListeners = () => {
         }
     });
 
-    // Keyboard events
     setupKeyboardEvents();
 };
 
@@ -293,7 +290,7 @@ const setupCustomEvents = () => {
     });
 };
 
-// === Utility Functions ===
+// Utility Functions 
 const groupOrdersById = (orders) => {
     return orders.reduce((groups, order) => {
         const orderId = order.id || 'UNKNOWN';
@@ -327,7 +324,7 @@ const escapeHtml = (text) => {
     return div.innerHTML;
 };
 
-// === Public API ===
+// Public API
 export const refreshHistory = () => {
     state.clearCache();
     if (!elements.modal?.classList.contains('hidden')) {
@@ -348,7 +345,7 @@ export const getHistoryStats = () => ({
 
 export const closeHistory = hideModal;
 
-// === Global Access ===
+// Global
 if (typeof window !== 'undefined') {
     window.GTShopHistory = {
         open: openHistory,

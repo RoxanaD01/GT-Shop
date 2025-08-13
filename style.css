@@ -1,4 +1,4 @@
-/* === RESET & VARIABLES === */
+/* RESET & VARIABLES  */
 * {
   margin: 0;
   padding: 0;
@@ -19,8 +19,6 @@ body {
   margin: 0;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
-
-/* === UTILITY CLASSES === */
 
 .hidden {
   display: none;
@@ -48,7 +46,7 @@ body {
   transform: scale(0.9);
 }
 
-/* === NAVIGATION === */
+/* NAVIGATION */
 
 .main-nav {
   background-color: var(--GenTech-Purple);
@@ -193,7 +191,7 @@ body {
   height: 50px;
 }
 
-/* === PROFILE MODAL === */
+/* PROFILE MODAL */
 
 .profile-modal {
   position: absolute;
@@ -311,7 +309,7 @@ body {
   cursor: pointer;
 }
 
-/* === HERO/BAZAR SECTION === */
+/* BAZAR SECTION */
 
 .bazar-section {
   background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)),
@@ -341,7 +339,7 @@ body {
   line-height: 1.6;
 }
 
-/* === SEARCH & ACTION BUTTONS === */
+/* SEARCH & ACTION BUTTONS */
 
 .search-section {
   background-color: #f8f9fa;
@@ -414,7 +412,7 @@ body {
   position: relative;
 }
 
-/* === FILTER & SORT DROPDOWN === */
+/* FILTER & SORT DROPDOWN  */
 
 .filter-btn, .sort-btn {
   flex: 1;
@@ -647,7 +645,7 @@ body {
   font-weight: bold;
 }
 
-/* === REWARDS GRID === */
+/* REWARDS GRID */
 
 #rewards-container {
   padding: 40px;
@@ -778,7 +776,7 @@ body {
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
 }
 
-/* === MODALS & CART === */
+/* MODALS & CART */
 
 .modal {
   position: fixed;
@@ -1299,7 +1297,7 @@ body {
   background: #9CA3AF;
 }
 
-/* === STATES & ANIMATIONS === */
+/* STATES & ANIMATIONS */
 
 .loading-state {
   grid-column: 1 / -1;
@@ -1414,7 +1412,7 @@ body {
   margin: 0 auto 16px;
 }
 
-/* === FOOTER === */
+/* FOOTER */
 
 .footer {
   background-color: #E6E8EC;
@@ -1456,7 +1454,7 @@ body {
   padding: 15px;
 }
 
-/* === UNSORTED === */
+/* FILTER */
 
 .ap-icon {
   color: var(--GenTech-White);
@@ -2001,7 +1999,7 @@ body {
   transform: translateY(0);
 }
 
-/* === AT-RULES & MEDIA QUERIES (kept intact, original order) === */
+/* KEYFRAMES and MEDIA QUERIES*/
 
 @keyframes slideDown {
   from {
@@ -2101,8 +2099,7 @@ body {
   }
 }
 
-/* === MEDIA QUERIES PENTRU NAV-BAR === */
-/* Extra Small Mobile - 360px și mai jos */
+/* Extra Small Mobile - 360px > */
 @media (max-width: 360px) {
   .main-nav {
     padding: 12px 15px;
@@ -2300,7 +2297,7 @@ body {
   }
 }
 
-/* Mobile - 480px și mai jos */
+/* Mobile - 480px > */
 @media (max-width: 480px) {
   .main-nav {
     padding: 10px 15px;
@@ -2564,7 +2561,7 @@ body {
     gap: 12px;
     max-width: 100%;
   }
-/* 
+ 
   .filter-btn, .sort-btn {
     padding: 12px 20px;
     font-size: 0.95rem;
@@ -2625,7 +2622,7 @@ body {
     right: 50%;
     transform: translateX(50%);
     top: calc(100% + 8px);
-  } */
+  } 
 
   .sort-header {
     padding: 14px 20px;
@@ -2793,7 +2790,7 @@ body {
   }
 }
 
-/* Tablet - 768px și mai jos */
+/* Tablet - 768px > */
 @media (max-width: 768px) {
   .main-nav {
     padding: 12px 20px;

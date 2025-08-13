@@ -20,10 +20,6 @@ const elements = {
 export const initAddressModal = () => {
     cacheElements();
     setupEventListeners();
-    
-    if (CONFIG.DEBUG_MODE) {
-        console.log('📍 Address modal initialized');
-    }
 };
 
 const cacheElements = () => {
@@ -43,16 +39,8 @@ export const openAddressModal = () => {
     }
     
     if (!elements.addressModal.classList.contains('hidden')) {
-        if (CONFIG.DEBUG_MODE) {
-            console.log('⚠️ Address modal is already open');
-        }
         return;
     }
-    
-    if (CONFIG.DEBUG_MODE) {
-        console.log('📍 Opening address modal...');
-    }
-    
     const rewardModal = document.querySelector("#reward-modal");
     const cartModal = document.querySelector("#cart-modal");
     
@@ -76,14 +64,7 @@ export const openAddressModal = () => {
         if (elements.countyInput) {
             setTimeout(() => {
                 elements.countyInput.focus();
-                if (CONFIG.DEBUG_MODE) {
-                    console.log('✅ Focus set on county input');
-                }
             }, 100);
-        }
-        
-        if (CONFIG.DEBUG_MODE) {
-            console.log('✅ Address modal opened successfully');
         }
     }, 100);
 };
@@ -94,10 +75,6 @@ export const closeAddressModal = () => {
     elements.addressModal.classList.add('hidden');
     elements.addressModal.setAttribute('aria-hidden', 'true');
     document.body.classList.remove('modal-open');
-    
-    if (CONFIG.DEBUG_MODE) {
-        console.log('📍 Address modal closed');
-    }
 };
 
 export const clearAddressForm = () => {
@@ -122,12 +99,6 @@ export const handleAddressConfirmation = () => {
     if (!phoneRegex.test(phone)) {
         alert('Te rugăm să introduci un număr de telefon valid.');
         return;
-    }
-    
-    if (CONFIG.DEBUG_MODE) {
-        console.log('📍 Address confirmed:', {
-            county, city, fullAddress, phone
-        });
     }
     
     alert('Adresa a fost confirmată cu succes!');

@@ -50,10 +50,6 @@ export const getCartState = () => cartState;
 export const updateCartState = (newState) => {
     cartState = { ...cartState, ...newState };
     cartState.lastUpdated = Date.now();
-    
-    if (CONFIG.DEBUG_MODE) {
-        console.log('🛒 Cart state updated:', cartState);
-    }
 };
 
 export const clearCart = () => {
@@ -192,10 +188,6 @@ export const openCartModal = () => {
     
     const firstFocusable = elements.cartModal.querySelector('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])');
     if (firstFocusable) firstFocusable.focus();
-    
-    if (CONFIG.DEBUG_MODE) {
-        console.log('🛒 Cart modal opened');
-    }
 };
 
 export const closeCartModal = () => {
@@ -205,10 +197,6 @@ export const closeCartModal = () => {
     elements.cartModal.setAttribute('aria-hidden', 'true');
     
     if (elements.cartIconBtn) elements.cartIconBtn.focus();
-    
-    if (CONFIG.DEBUG_MODE) {
-        console.log('🛒 Cart modal closed');
-    }
 };
 
 export const loadCart = async () => {
@@ -220,11 +208,7 @@ export const loadCart = async () => {
             items: cartData.items || [],
             totalPoints: cartData.totalPoints || 0
         });
-        
-        if (CONFIG.DEBUG_MODE) {
-            console.log('🛒 Cart loaded:', getCartState());
-        }
-        
+    
     } catch (error) {
         console.error('❌ Error loading cart:', error);
         showCartMessageModal('Nu am putut încărca coșul', 'error');
@@ -240,11 +224,6 @@ export const addItemToCart = async (reward) => {
     }
 
     const needsAddress = isPhysicalProduct(reward);
-    
-    if (CONFIG.DEBUG_MODE) {
-        console.log('🛒 Adding item to cart:', reward.name);
-        console.log('📍 Is physical product:', needsAddress);
-    }
     
     try {
         cartState.isLoading = true;
@@ -263,16 +242,9 @@ export const addItemToCart = async (reward) => {
             animateCartUpdate();
 
             if (needsAddress) {
-                if (CONFIG.DEBUG_MODE) {
-                    console.log('📍 Physical product detected - opening address modal...');
-                }
-                
                 setTimeout(() => {
                     try {
                         openAddressModal();
-                        if (CONFIG.DEBUG_MODE) {
-                            console.log('✅ Address modal opened successfully');
-                        }
                     } catch (addressError) {
                         console.error('❌ Error opening address modal:', addressError);
                     }
@@ -315,10 +287,6 @@ export const processCheckout = async () => {
             showCartMessageModal(response.message || 'Comandă finalizată cu succes!', 'success');
 
             if (hadPhysicalProducts) {
-                if (CONFIG.DEBUG_MODE) {
-                    console.log('📍 Physical products in checkout, opening address modal...');
-                }
-                
                 setTimeout(() => {
                     openAddressModal();
                 }, 500);

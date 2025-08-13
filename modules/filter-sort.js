@@ -1,7 +1,7 @@
 import { FILTER_CONFIG, CONFIG} from "./config.js";
 import { logDebug, showInfo } from "./logger.js";
 
-// === State Management ===
+// State Management
 class FilterState {
     constructor() {
         this.allRewards = [];
@@ -32,17 +32,11 @@ class FilterState {
             .filter(Boolean);
         
         this.availableCategories = [...new Set(normalizedCategories)].sort();
-        console.log('Available categories:', this.availableCategories);
     }
-
-    // Add category normalization method to FilterState
     normalizeCategory(cat) {
         if (!cat) return 'uncategorized';
-        
-        // Remove extra spaces and convert to lowercase
         cat = cat.trim().toLowerCase();
 
-        // Handle various category name variations
         if (cat === 'decoratiuni' || cat === 'decorații' || cat === 'decorations' || cat === 'decoration') {
             return 'decoratiuni';
         }
@@ -73,24 +67,15 @@ class FilterState {
         }
 
         const startTime = performance.now();
-        console.log('Applying filters:', this.filters);
 
-        // Apply filters
         this.filteredRewards = this.allRewards.filter(reward => 
             this.matchesSearch(reward) &&
             this.matchesCategory(reward) &&
             this.matchesPrice(reward)
         );
 
-        console.log(`Filtered ${this.filteredRewards.length}/${this.allRewards.length} rewards`);
-
-        // Apply sorting
         this.applySorting();
-
-        // Update timestamp
         this.lastFilterTime = Date.now();
-
-        // Trigger render
         this.triggerRender();
 
         const duration = performance.now() - startTime;
@@ -128,7 +113,6 @@ class FilterState {
 
     applySorting() {
         const { sortBy } = this.filters;
-        console.log('Applying sort:', sortBy);
 
         switch (sortBy.toLowerCase()) {
             case 'preț crescător':
@@ -206,34 +190,28 @@ class FilterState {
 
 const state = new FilterState();
 
-// === DOM Elements Cache ===
+// DOM Elements Cache 
 const elements = {
-    // Filter controls
     filterBtn: null,
     filterDropdown: null,
+
     applyBtn: null,
-    
-    // Sort controls
     sortBtn: null,
     sortDropdown: null,
     
-    // Search controls
     searchInput: null,
     searchBtn: null,
     
-    // Price controls
     priceSlider: null,
     minPriceInput: null,
     maxPriceInput: null,
     
-    // Category checkboxes (populated dynamically)
     categoryContainer: null,
-    
-    // Results
+
     rewardsGrid: null
 };
 
-// === Initialization ===
+// Initialization 
 export const initFilterSort = () => {
     cacheElements();
     setupEventListeners();
@@ -261,13 +239,11 @@ const cacheElements = () => {
     elements.categoryContainer = document.querySelector('.filter-grid');
     elements.rewardsGrid = document.querySelector('#rewards-grid');
     
-    console.log('Elements cached:', elements);
     logDebug('🔧 Filter-Sort DOM elements cached');
 };
 
 // === Public API ===
 export const setRewardsData = (rewards) => {
-    console.log('Setting rewards data:', rewards.length);
     state.updateRewards(rewards);
     updateCategoryCheckboxes();
     state.applyFilters();
@@ -277,22 +253,16 @@ export const setRewardsData = (rewards) => {
 
 export const setRenderCallback = (callback) => {
     state.renderCallback = callback;
-    console.log('Render callback set');
 };
-
 export const setRewardsGrid = (gridElement) => {
     elements.rewardsGrid = gridElement;
 };
-
 export const getFilteredRewards = () => [...state.filteredRewards];
-
 export const getCurrentFilters = () => ({ ...state.filters });
-
 export const getFilterStats = () => state.getStats();
 
-// === Filter Operations ===
+// Filter Operations
 export const searchRewards = (query) => {
-    console.log('Search query:', query);
     if (elements.searchInput) {
         elements.searchInput.value = query;
     }
@@ -302,8 +272,6 @@ export const searchRewards = (query) => {
 
 export const filterByCategory = (category) => {
     const categoryLower = state.normalizeCategory(category);
-    console.log('Filter by category:', categoryLower);
-    
     if (!state.filters.categories.includes(categoryLower)) {
         state.filters.categories.push(categoryLower);
         updateCategoryUI();
@@ -312,7 +280,6 @@ export const filterByCategory = (category) => {
 };
 
 export const sortBy = (sortType) => {
-    console.log('Sort by:', sortType);
     state.filters.sortBy = sortType;
     updateSortUI();
     state.applyFilters();
@@ -321,7 +288,6 @@ export const sortBy = (sortType) => {
 export const setPriceRange = (min, max) => {
     state.filters.priceMin = Math.max(0, min);
     state.filters.priceMax = Math.max(state.filters.priceMin, max);
-    
     updatePriceUI();
     state.applyFilters();
 };
@@ -332,7 +298,7 @@ export const resetFilters = () => {
     showInfo('Toate filtrele au fost resetate', 2000);
 };
 
-// === Event Listeners ===
+// Event Listeners
 const setupEventListeners = () => {
     // Toggle dropdowns
     elements.filterBtn?.addEventListener('click', (e) => {
@@ -345,19 +311,13 @@ const setupEventListeners = () => {
         toggleDropdown('sort');
     });
 
-    // Search functionality
+    // Search
     setupSearchListeners();
     
-    // Filter actions
     elements.applyBtn?.addEventListener('click', handleFilterApply);
-    
-    // Category filters
     elements.categoryContainer?.addEventListener('change', handleCategoryChange);
-    
-    // Sort options
     elements.sortDropdown?.addEventListener('click', handleSortClick);
-    
-    // Close dropdowns
+  
     document.addEventListener('click', handleOutsideClick);
     document.addEventListener('keydown', handleKeyDown);
     
@@ -375,14 +335,12 @@ const setupSearchListeners = () => {
         });
     });
 
-    // Search button
     elements.searchBtn?.addEventListener('click', (e) => {
         e.preventDefault();
         const query = elements.searchInput?.value.trim() || '';
         searchRewards(query);
     });
 
-    // Enter key
     elements.searchInput?.addEventListener('keydown', (e) => {
         if (e.key === 'Enter') {
             e.preventDefault();
@@ -405,24 +363,24 @@ const setupPriceControls = () => {
         state.applyFilters(); // Apply filters immediately on price change
     });
 
-    // Min price input
+    // Min price 
     elements.minPriceInput.addEventListener('input', (e) => {
         const value = parseInt(e.target.value) || FILTER_CONFIG.DEFAULT_PRICE_MIN;
         state.filters.priceMin = value;
         elements.priceSlider.min = value;
-        state.applyFilters(); // Apply filters immediately on price change
+        state.applyFilters(); 
     });
 
-    // Max price input
+    // Max price 
     elements.maxPriceInput.addEventListener('input', (e) => {
         const value = parseInt(e.target.value) || FILTER_CONFIG.DEFAULT_PRICE_MAX;
         state.filters.priceMax = value;
         elements.priceSlider.value = value;
-        state.applyFilters(); // Apply filters immediately on price change
+        state.applyFilters(); 
     });
 };
 
-// === Event Handlers ===
+// Event Handlers 
 const toggleDropdown = (type) => {
     if (type === 'filter') {
         elements.filterDropdown?.classList.toggle('hidden');
@@ -452,52 +410,39 @@ const handleKeyDown = (e) => {
 
 const handleFilterApply = (e) => {
     e.preventDefault();
-    console.log('Apply filters clicked');
     
-    // Update price filters from inputs
+    // Update price filters 
     state.filters.priceMin = parseInt(elements.minPriceInput?.value) || FILTER_CONFIG.DEFAULT_PRICE_MIN;
     state.filters.priceMax = parseInt(elements.maxPriceInput?.value) || FILTER_CONFIG.DEFAULT_PRICE_MAX;
     
-    // Update category filters
     updateCategoryFilters();
-    
-    // Apply filters
     state.applyFilters();
-    
-    // Close dropdown
     elements.filterDropdown?.classList.add('hidden');
-    
-    // Show feedback
     showFilterFeedback();
 };
 
 const handleCategoryChange = (e) => {
-    console.log('Category change:', e.target);
     if (e.target.type === 'checkbox' && e.target.name === 'category') {
         updateCategoryFilters();
-        state.applyFilters(); // Apply filters immediately on category change
+        // Apply filters on category change
+        state.applyFilters(); 
     }
 };
 
 const handleSortClick = (e) => {
     if (e.target.tagName === 'LI') {
         const sortText = e.target.textContent.replace(' ✓', '').trim();
-        console.log('Sort clicked:', sortText);
         sortBy(sortText);
         elements.sortDropdown?.classList.add('hidden');
     }
 };
 
-// === UI Updates ===
+// UI Update
 const updateCategoryCheckboxes = () => {
     if (!elements.categoryContainer || state.availableCategories.length === 0) {
-        console.log('No category container or categories');
         return;
     }
 
-    console.log('Updating category checkboxes with:', state.availableCategories);
-
-    // Create a mapping between checkbox values and normalized categories
     const checkboxMapping = {
         'voucher': 'vouchere',
         'vouchere': 'vouchere',
@@ -517,9 +462,6 @@ const updateCategoryCheckboxes = () => {
             const checkboxValue = checkbox.value.toLowerCase();
             const normalizedValue = checkboxMapping[checkboxValue] || checkboxValue;
             const isAvailable = state.availableCategories.includes(normalizedValue);
-            
-            console.log(`Checkbox ${checkboxValue} -> ${normalizedValue}, available: ${isAvailable}`);
-            
             option.style.display = isAvailable ? '' : 'none';
         }
     });
@@ -530,17 +472,12 @@ const updateCategoryCheckboxes = () => {
 const updateCategoryFilters = () => {
     const selectedCategories = [];
     const checkboxes = elements.categoryContainer?.querySelectorAll('input[name="category"]:checked') || [];
-    
-    console.log('Updating category filters, checked boxes:', checkboxes.length);
-    
     checkboxes.forEach(cb => {
         const normalizedCategory = state.normalizeCategory(cb.value);
         selectedCategories.push(normalizedCategory);
-        console.log(`Selected category: ${cb.value} -> ${normalizedCategory}`);
     });
     
     state.filters.categories = selectedCategories;
-    console.log('Final selected categories:', state.filters.categories);
 };
 
 const updateCategoryUI = () => {
@@ -581,16 +518,9 @@ const updatePriceUI = () => {
 };
 
 const resetUI = () => {
-    // Reset search
-    if (elements.searchInput) elements.searchInput.value = '';
-    
-    // Reset categories
+    if (elements.searchInput) elements.searchInput.value = ''; // Reset search
     updateCategoryUI();
-    
-    // Reset prices
     updatePriceUI();
-    
-    // Reset sort
     initializeSortOptions();
 };
 
@@ -628,14 +558,12 @@ const showFilterFeedback = () => {
         ? `${stats.filtered} produse găsite cu filtrele: ${activeFilters.join(', ')}`
         : `Toate ${stats.total} produsele afișate`;
 
-    console.log('Filter feedback:', message);
-    
     if (CONFIG.DEBUG_MODE) {
         logDebug('🔍 Filter feedback:', message);
     }
 };
 
-// === Global Functions (for HTML onclick) ===
+// Global Functions
 if (typeof window !== 'undefined') {
     window.clearAllFilters = resetFilters;
     window.GTShopFilters = {

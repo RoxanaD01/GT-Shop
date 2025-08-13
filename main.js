@@ -157,8 +157,6 @@ class GTShopApp {
         }, 1000);
     }
 
-
-
     async initializeFallback() {
         try {
             showLoading('Încercare cu mock data');

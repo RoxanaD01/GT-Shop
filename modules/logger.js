@@ -1,6 +1,6 @@
 import { CONFIG, LOG_CONFIG } from "./config.js";
 
-// === State Management ===
+// State Management
 class NotificationState {
     constructor() {
         this.container = null;
@@ -40,7 +40,6 @@ class NotificationState {
 
 const state = new NotificationState();
 
-// === Styles Injection ===
 const injectStyles = () => {
     if (state.stylesInjected || document.querySelector('#gt-ui-styles')) return;
 
@@ -210,10 +209,10 @@ const injectStyles = () => {
     document.head.appendChild(styles);
     state.stylesInjected = true;
     
-    logDebug('🎨 UI styles injected');
+    logDebug(' UI styles injected');
 };
 
-// === Loading System ===
+// Loading
 export const showLoading = (message = 'Se încarcă...') => {
     // Prevent multiple loaders
     if (state.loadingOverlay) {
@@ -263,7 +262,7 @@ const updateLoadingMessage = (message) => {
     }
 };
 
-// === Notification System ===
+// Notifications
 export const showNotification = (message, type = 'info', duration = LOG_CONFIG.DEFAULT_DURATION) => {
     if (!message) return;
 
@@ -287,7 +286,7 @@ export const showNotification = (message, type = 'info', duration = LOG_CONFIG.D
         }, duration);
     }
     
-    logDebug(`📢 ${type.toUpperCase()}: ${message}`);
+    logDebug(` ${type.toUpperCase()}: ${message}`);
     return notification;
 };
 
@@ -315,8 +314,7 @@ const createNotificationElement = (message, type) => {
                     type="button">×</button>
         </div>
     `;
-    
-    // Add close functionality
+
     const closeBtn = notification.querySelector('.gt-notification__close');
     closeBtn?.addEventListener('click', () => removeNotification(notification));
     
@@ -347,7 +345,6 @@ const getNotificationIcon = (type) => {
     return icons[type] || 'ℹ️';
 };
 
-// === Notification Convenience Methods ===
 export const showSuccess = (message, duration = 3000) => {
     return showNotification(message, 'success', duration);
 };
@@ -364,12 +361,9 @@ export const showInfo = (message, duration = 3000) => {
     return showNotification(message, 'info', duration);
 };
 
-// === Debug Logging ===
 export const logDebug = (message, data = null) => {
     if (!CONFIG.DEBUG_MODE) return;
-    
     const timestamp = new Date().toISOString().slice(11, 23);
-    console.log(`🔧 [${timestamp}] ${message}`, data || '');
 };
 
 export const logAPI = (endpoint, method = 'GET', data = null, success = true) => {
@@ -378,8 +372,6 @@ export const logAPI = (endpoint, method = 'GET', data = null, success = true) =>
     const icon = success ? '✅' : '❌';
     const status = success ? 'SUCCESS' : 'ERROR';
     const timestamp = new Date().toISOString().slice(11, 23);
-    
-    console.log(`${icon} [${timestamp}] API ${method} ${endpoint} - ${status}`, data || '');
 };
 
 export const logError = (error, context = '') => {
@@ -398,7 +390,7 @@ export const logError = (error, context = '') => {
     }
 };
 
-// === Performance Monitoring ===
+// Performance
 const timers = new Map();
 
 export const startTimer = (label) => {
@@ -419,7 +411,7 @@ export const endTimer = (label) => {
     console.timeEnd(label);
 };
 
-// === Error Handling ===
+// Error Handling
 let errorHandlersSetup = false;
 
 export const setupGlobalErrorHandling = () => {
@@ -447,10 +439,10 @@ export const setupGlobalErrorHandling = () => {
     });
     
     errorHandlersSetup = true;
-    logDebug('🛡️ Global error handling initialized');
+    logDebug(' Global error handling initialized');
 };
 
-// === Network Monitoring ===
+// Network
 let networkMonitoringSetup = false;
 
 export const setupNetworkMonitoring = () => {
@@ -458,7 +450,7 @@ export const setupNetworkMonitoring = () => {
     
     const handleOnline = () => {
         showSuccess('Conexiune restabilită!');
-        logDebug('🌐 Network: Back online');
+        logDebug(' Network: Back online');
         document.dispatchEvent(new CustomEvent('networkStatusChanged', { 
             detail: { online: true } 
         }));
@@ -466,7 +458,7 @@ export const setupNetworkMonitoring = () => {
     
     const handleOffline = () => {
         showWarning('Conexiunea la internet a fost pierdută', 0);
-        logDebug('🌐 Network: Gone offline');
+        logDebug(' Network: Gone offline');
         document.dispatchEvent(new CustomEvent('networkStatusChanged', { 
             detail: { online: false } 
         }));
@@ -481,10 +473,10 @@ export const setupNetworkMonitoring = () => {
     }
     
     networkMonitoringSetup = true;
-    logDebug('🌐 Network monitoring initialized');
+    logDebug(' Network monitoring initialized');
 };
 
-// === Utility Functions ===
+// Utility Functions 
 const escapeHtml = (text) => {
     if (typeof text !== 'string') return String(text || '');
     const div = document.createElement('div');
@@ -492,12 +484,12 @@ const escapeHtml = (text) => {
     return div.innerHTML;
 };
 
-// === Public API ===
+// Public API
 export const clearAllNotifications = () => {
     state.activeNotifications.forEach(notification => {
         removeNotification(notification);
     });
-    logDebug('🧹 All notifications cleared');
+    logDebug(' All notifications cleared');
 };
 
 export const getLoggerState = () => ({
@@ -507,7 +499,7 @@ export const getLoggerState = () => ({
     stylesInjected: state.stylesInjected
 });
 
-// === Global Access ===
+// Global 
 if (typeof window !== 'undefined') {
     window.GTShopLogger = {
         showLoading,
