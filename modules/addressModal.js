@@ -1,7 +1,7 @@
-import { CONFIG } from './config.js';
+// import { CONFIG } from './config.js';
 
 export const isPhysicalProduct = (reward) => {
-    const physicalCategories = ['merchandise', 'electronics'];
+    const physicalCategories = ['GenTech', 'Comori'];
     return physicalCategories.includes(reward.category?.toLowerCase()) ||
            reward.physical === true ||
            reward.type === 'physical';

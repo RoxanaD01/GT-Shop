@@ -241,6 +241,12 @@ export const addItemToCart = async (reward) => {
             showCartMessageModal(response.message || 'Produs adăugat în coș!', 'success');
             animateCartUpdate();
 
+            const rewardModalElement = document.querySelector("#reward-modal");
+            if(rewardModalElement && !rewardModalElement.classList.contains('hidden')) {
+                rewardModalElement.classList.add('hidden');
+                rewardModalElement.setAttribute('aria-hidden', 'true');
+            }
+
             if (needsAddress) {
                 setTimeout(() => {
                     try {

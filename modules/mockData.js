@@ -1,3 +1,5 @@
+// import { isPhysicalProduct } from "./addressModal";
+
 const mockStorage = {
     user: {
         id: "88",
@@ -41,10 +43,11 @@ const mockStorage = {
       description: "Tricou din bumbac cu logo Generația Tech. ",
       fullDescription: "Tricou unisex, 100% bumbac, produs in Romania. Cu logo GeneratiaTech.",
       price: 500,
-      image: "placeholder.jpg",
+      image: "https://tse1.mm.bing.net/th/id/OIP.7HEf7nj4Omi52_mZgMf1KQHaHQ?pid=Api&P=0&h=220",
       category: "GenTech",
       inStock: true,
-      stockCount: 5
+      stockCount: 5,
+      physical: true
     },
     {
       id: "11",
@@ -56,6 +59,7 @@ const mockStorage = {
       category: "Abonamente",
       inStock: true,
       stockCount: 5
+      
     },
     {
       id: "12",
@@ -125,7 +129,7 @@ const mockStorage = {
     },
     {
       id: "36",
-      name: "Badge \"Gemini\"",
+      name: "Badge",
       description: "Badge vizibil pe Leaderboards.",
       fullDescription: "Distincție digitală ce apare lângă numele tău pe Leaderboards, arătând că ai acumulat suficiente puncte pentru acest titlu.",
       price: 15,
@@ -140,7 +144,7 @@ const mockStorage = {
       description: "Efect vizual „foc” pe Leaderboards.",
       fullDescription: "Adaugă un cerc de foc în jurul iconiței tale, pentru un profil care iese în evidență.",
       price: 25,
-      image: "firenationattacked.jpg",
+      image: "https://tse4.mm.bing.net/th/id/OIP.2B7q6eRAI0kc1YZ25pNS7gHaHa?pid=Api&P=0&h=220",
       category: "Decoratiuni",
       inStock: true,
       stockCount: 5
@@ -160,12 +164,13 @@ const mockStorage = {
       id: "39",
       name: "Voucher eMAG 150",
       description: "Voucher eMAG în valoare de 150 de lei.",
-      fullDescription: "Utilizabil pentru cumpărături pe eMAG, valabil conform termenilor și condițiilor magazinului.",
+      fullDescription: "Util pentru cumpărături în valoare de 150 RON pe eMAG, valabil conform termenilor și condițiilor magazinului.",
       price: 1500,
       image: "https://i.postimg.cc/qgV2hh3N/emag.png",
       category: "Voucher",
       inStock: true,
       stockCount: 5
+      
     },
     {
       id: "4",
@@ -173,16 +178,17 @@ const mockStorage = {
       description: "Agendă 2026 cu branding GT.",
       fullDescription: "Agendă cu design minimalist, ideală pentru planificare și notițe.",
       price: 150,
-      image: "placeholder.jpg",
+      image: "https://tse1.mm.bing.net/th/id/OIP.FRSE9IkyY5NPIHqynM9TvwHaGN?pid=Api&P=0&h=220",
       category: "GenTech",
       inStock: true,
-      stockCount: 15
+      stockCount: 15,
+      physical: true
     },
     {
       id: "40",
       name: "Voucher eMAG 100",
       description: "Voucher eMAG în valoare de 100 de lei.",
-      fullDescription: "Utilizabil pentru cumpărături pe eMAG, valabil conform termenilor și condițiilor magazinului.",
+      fullDescription: "Util pentru cumpărături în valoare de 100 RON pe eMAG, valabil conform termenilor și condițiilor magazinului.",
       price: 1000,
       image: "https://i.postimg.cc/qgV2hh3N/emag.png",
       category: "Voucher",
@@ -193,7 +199,7 @@ const mockStorage = {
       id: "41",
       name: "Voucher eMAG 200",
       description: "Voucher eMag în valoare de 200 de lei.",
-      fullDescription: "Utilizabil pentru cumpărături pe eMAG, valabil conform termenilor și condițiilor magazinului.",
+      fullDescription: "Util pentru cumpărături în valoare de 200 RON pe eMAG, valabil conform termenilor și condițiilor magazinului.",
       price: 2000,
       image: "https://i.postimg.cc/qgV2hh3N/emag.png",
       category: "Voucher",
@@ -204,7 +210,7 @@ const mockStorage = {
       id: "42",
       name: "Voucher eMAG 300",
       description: "Voucher eMAG în valoare de 300 de lei.",
-      fullDescription: "Utilizabil pentru cumpărături pe eMAG, valabil conform termenilor și condițiilor magazinului.",
+      fullDescription: "Util pentru cumpărături în valoare de 300 RON pe eMAG, valabil conform termenilor și condițiilor magazinului.",
       price: 3000,
       image: "https://i.postimg.cc/qgV2hh3N/emag.png",
       category: "Voucher",
@@ -215,7 +221,7 @@ const mockStorage = {
       id: "43",
       name: "Voucher Miele 100",
       description: "Voucher Miele în valoare de 100 de lei.",
-      fullDescription: " Folosibil pentru achiziția produselor Miele, inclusiv electrocasnice și accesorii.",
+      fullDescription: " Util pentru achiziția produselor Miele în valoare de 100 RON, inclusiv electrocasnice și accesorii.",
       price: 1000,
       image: "https://i.postimg.cc/1XprKrPG/miele.png",
       category: "Voucher",
@@ -226,7 +232,7 @@ const mockStorage = {
       id: "44",
       name: "Voucher Miele 200",
       description: "Voucher Miele în valoare de 200 de lei.",
-      fullDescription: "Folosibil pentru achiziția produselor Miele, inclusiv electrocasnice și accesorii.",
+      fullDescription: "Util pentru achiziția produselor Miele în valoare de 200 RON, inclusiv electrocasnice și accesorii.",
       price: 2000,
       image: "https://i.postimg.cc/1XprKrPG/miele.png",
       category: "Voucher",
@@ -237,7 +243,7 @@ const mockStorage = {
       id: "45",
       name: "Voucher Miele 300",
       description: "Voucher Miele în valoare de 300 de lei.",
-      fullDescription: "Folosibil pentru achiziția produselor Miele, inclusiv electrocasnice și accesorii.",
+      fullDescription: "Util pentru achiziția produselor Miele în valoare de 200 RON, inclusiv electrocasnice și accesorii.",
       price: 3000,
       image: "https://i.postimg.cc/1XprKrPG/miele.png",
       category: "Voucher",
@@ -248,7 +254,7 @@ const mockStorage = {
       id: "46",
       name: "Voucher Kaufland 100",
       description: "Voucher Kaufland în valoare de 100 de  lei",
-      fullDescription: "Poate fi utilizat pentru cumpărături în magazinele Kaufland din România.",
+      fullDescription: "Poate fi utilizat pentru cumpărături în valoare de 100 RON în magazinele Kaufland din România.",
       price: 1000,
       image: "https://i.postimg.cc/5thzkQsn/kaufland.png",
       category: "Voucher",
@@ -261,10 +267,12 @@ const mockStorage = {
       description: "Pix albastru Generația Tech.",
       fullDescription: "Pix ergonomic, cu cerneală de calitate și design simplu, marcat cu logo GT. ",
       price: 100,
-      image: "placeholder.jpg",
+      image: "https://tse1.mm.bing.net/th/id/OIP.RG0cX6OyjfJtwyiHi0rlkQHaHa?pid=Api&P=0&h=220",
       category: "GenTech",
       inStock: true,
-      stockCount: 40
+      stockCount: 40,
+      physical: true
+
     },
     {
       id: "6",
@@ -272,10 +280,12 @@ const mockStorage = {
       description: "Rucsac de drumeție cu logo GT",
       fullDescription: "Spațios, rezistent și confortabil, ideal pentru deplasări zilnice sau excursii. ",
       price: 400,
-      image: "placeholder.jpg",
+      image: "https://s13emagst.akamaized.net/products/55585/55584823/images/res_e4d470e3f606a5cfd9c79bb7f3ff46d3.jpg?width=720&height=720&hash=4C48E024D87E821DEC183E79555B4F5F",
       category: "GenTech",
       inStock: true,
-      stockCount: 5
+      stockCount: 5,
+      physical: true
+
     },
     {
       id: "60",
@@ -283,10 +293,36 @@ const mockStorage = {
       description: "Bandă LED inteligentă Philips.",
       fullDescription: "Iluminare personalizabilă, controlabilă prin aplicație sau asistent vocal, ideală pentru decor modern.",
       price: 4000,
-      image: "https://hueblog.com/wp-content/uploads/2021/09/Hue-Sync-Gradient.jpg",
+      image: "https://tse1.mm.bing.net/th/id/OIP.r55RCnAcyoDb2nRztD7-QgHaGw?pid=Api&P=0&h=220",
       category: "Comori",
       inStock: true,
-      stockCount: 5
+      stockCount: 5,
+
+    },
+    {
+      id: "61",
+      name: "Philips Headphones",
+      description: "Casti Philips.",
+      fullDescription: "Super comode, cu sunet clar și bass plăcut — perfecte pentru muzică, apeluri sau relaxare. Le pui pe urechi și uiți de lume!",
+      price: 4000,
+      image: "https://lcdn.altex.ro/media/catalog/product/C/A/CASTAH4205BL.jpg",
+      category: "Comori",
+      inStock: true,
+      stockCount: 2,
+      physical: true
+
+    },
+     {
+      id: "62",
+      name: "JBL Speaker",
+      description: "Boxa portabila.",
+      fullDescription: "JBL Charge - boxă portabilă cu sunet puternic și bass care se simte! Rezistentă la apă, cu autonomie generoasă și funcție de powerbank, e gata de petrecere oriunde ai merge.",
+      price: 4000,
+      image: "https://tse4.mm.bing.net/th/id/OIP.qJ-RoTTtEDHizOwiJQVImwHaE1?pid=Api&P=0&h=220",
+      category: "Comori",
+      inStock: true,
+      stockCount: 1,
+      physical: true
     }
     ],
     
@@ -422,6 +458,34 @@ export const mockCheckout = async (items) => {
         newBalance: mockStorage.user.activityPoints,
         purchasedItems,
         transactionId: orderId
+    };
+};
+
+export const mockRemoveFromCart = async (rewardId) => {
+    await mockStorage.networkDelay();
+    
+    const itemIndex = mockStorage.cart.items.findIndex(item => item.rewardId === rewardId);
+    
+    if (itemIndex === -1) {
+        return {
+            success: false,
+            message: "Produsul nu a fost găsit în coș",
+            cart: { ...mockStorage.cart }
+        };
+    }
+    
+    mockStorage.cart.items.splice(itemIndex, 1);
+    mockStorage.cart.totalPoints = mockStorage.cart.items.reduce(
+        (total, item) => total + (item.price * item.quantity), 0
+    );
+    
+    return {
+        success: true,
+        message: "Produs eliminat din coș",
+        cart: { 
+            items: [...mockStorage.cart.items],
+            totalPoints: mockStorage.cart.totalPoints 
+        }
     };
 };
 

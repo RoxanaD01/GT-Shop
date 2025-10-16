@@ -1,5 +1,5 @@
 export const CONFIG = {
-    MOCK_API: false,
+    MOCK_API: true,
     API_BASE_URL: "https://shopgtteam1-production.up.railway.app",
     DEFAULT_TIMEOUT: 10000,
     DEBUG_MODE: true,

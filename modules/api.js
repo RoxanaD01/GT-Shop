@@ -1,5 +1,5 @@
 import { CONFIG } from "./config.js";
-import { mockUserProfile, mockRewards, mockCart, mockCheckout, mockHistory, mockAddToCart } from "./mockData.js";
+import { mockUserProfile, mockRewards, mockCart, mockCheckout, mockHistory, mockAddToCart, mockRemoveFromCart } from "./mockData.js";
 
 const fetchWithTimeout = (url, options = {}, timeout = CONFIG.DEFAULT_TIMEOUT) => {
     return Promise.race([
@@ -79,13 +79,16 @@ export const addToCart = (rewardId, quantity = 1) => {
     return apiCall("/api/cart/add", options, () => mockAddToCart(rewardId, quantity));
 };
 
-export const removeFromCartAPI = (rewardId) => {
+export const removeFromCartAPI = async (rewardId) => {
     const options = {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
         body: JSON.stringify({ rewardId })
     };
-    return apiCall("/api/cart/remove", options);
+    
+    return apiCall('/api/cart/remove', options, () => mockRemoveFromCart(rewardId));
 };
 
 export const checkout = (items) => {
