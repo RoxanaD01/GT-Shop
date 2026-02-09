@@ -84,7 +84,7 @@ class GTShopApp {
 
     initializeModules() {
         try {
-            logDebug('🔧 Initializing modules');
+            logDebug('Initializing modules');
             renderUserProfile(this.user);
             setUserPoints(this.user.activityPoints);
             initCart(this.user);
@@ -92,7 +92,7 @@ class GTShopApp {
             initHistory();
             initRewards();
             setupUserEventListeners();
-            logDebug('🔧 Modules initialized successfully');
+            logDebug('Modules initialized successfully');
         } catch (error) {
             console.error('Failed to initialize modules:', error);
             throw error;
