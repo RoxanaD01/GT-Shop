@@ -33,7 +33,7 @@ class GTShopApp {
             
         } catch (error) {
             console.error('Failed to initialize GT Shop:', error);
-            showError('Nu am putut încărca magazinul. Te rugăm să reîmprospătești pagina.');
+            showError('Nu am putut încărca magazinul. Te rugăm să reîmprospătezi pagina.');
             setTimeout(() => this.initializeFallback(), 2000);
         } finally {
             hideLoading();
